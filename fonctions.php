@@ -5,22 +5,21 @@
 // ---------------------------------------
 function getDB() {
     $host = "localhost";
-    $dbname = "userauth";
+    $dbname = "gestion_users";
     $username = "root";
     $password = "";
-	$address = "";
 
     try {
-        return new PDO(
+        $pdo = new PDO(
             "mysql:host=$host;dbname=$dbname;port=3306;charset=utf8",
             $username,
             $password,
             [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                PDO::ATTR_EMULATE_PREPARES => false
             ]
         );
+        return $pdo;
     } catch (PDOException $e) {
         die("Erreur de connexion BDD : " . $e->getMessage());
     }
@@ -42,9 +41,10 @@ function emailExiste($pdo, $email) {
 // ---------------------------------------
 // Inscrire un utilisateur
 // ---------------------------------------
-function creerUtilisateur($pdo, $nom, $email, $passwordHash) {
-    $stmt = $pdo->prepare("INSERT INTO users (nom, email, password) VALUES (?, ?, ?)");
-    return $stmt->execute([$nom, $email, $passwordHash]);
+function creerUtilisateur($pdo, $nom, $email, $adresse, $passwordHash) {
+    $sql = "INSERT INTO users (nom, email, adresse, password) VALUES (?, ?, ?, ?)";
+    $stmt = $pdo->prepare($sql);
+    return $stmt->execute([$nom, $email, $adresse, $passwordHash]);
 }
 
 
