@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_role'] = $user['role_id'];
             // 4. Redirection intelligente selon le rôle
             if ($user['role_id'] == 1) {
-                heaser("Location: admin.php");
+                header("Location: admin.php");
             } else {
                 header("Location; profil.php");
             }
