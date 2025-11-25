@@ -3,6 +3,7 @@ session_start();
 require "fonctions.php";
 
 $pdo = getDB();
+$message = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -11,41 +12,53 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($email === "" || $password === "") {
         die("Veuillez remplir tous les champs.");
+    } else {
+        // 1. On récupère l'utilisateur par son email
+        $user = getUserByEmail($pdo, $email);
+
+        // 2. Vérification du mot de passe
+        if ($user && password_verify($password, $user['passwors'])) {
+            // 3. ON STOCKE LES INFOS IMPORTANTES EN SESSION
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_nom'] = $user['nom'];
+            $_SESSION['user_role'] = $user['role_id'];
+            // 4. Redirection intelligente selon le rôle
+            if ($user['role_id'] == 1) {
+                heaser("Location: admin.php");
+            } else {
+                header("Location; profil.php");
+            }
+            exit;
+        } else {
+            $message = "Email ou mot de passe incorrect.";
+        }
     }
-
-    $user = getUserByEmail($pdo, $email);
-
-    if (!$user) {
-        die("Email ou mot de passe incorrect.");
-    }
-
-    if (!password_verify($password, $user['password'])) {
-        die("Email ou mot de passe incorrect.");
-    }
-
-    $_SESSION['user_id'] = $user['id'];
-    $_SESSION['user_nom'] = $user['nom'];
-
-    header("Location: tableau.php");
-    exit;
 }
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion</title>
+</head>
 <body>
+    <h2>Connexion</h2>
+    
+    <?php if ($message): ?>
+        <p style="color:red;"><?php echo $message; ?></p>
+    <?php endif; ?>
 
-<h2>Connexion</h2>
+    <form method="POST">
+        <label>Email :</label><br>
+        <input type="email" name="email" required><br><br>
 
-<form method="POST">
-    Email :<br>
-    <input type="email" name="email" required><br><br>
+        <label>Mot de passe :</label><br>
+        <input type="password" name="password" required><br><br>
 
-    Mot de passe :<br>
-    <input type="password" name="password" required><br><br>
-
-    <button type="submit">Se connecter</button>
-</form>
-
+        <button type="submit">Se connecter</button>
+    </form>
+    
+    <p>Pas encore de compte ? <a href="register.php">Inscrivez-vous</a></p>
 </body>
 </html>
