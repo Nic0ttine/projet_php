@@ -4,6 +4,7 @@
 // Connexion PDO à la base de données
 // ---------------------------------------
 function getDB() {
+    // Le PDF demande la base "gestion_users"
     $host = "localhost";
     $dbname = "gestion_users";
     $username = "root";
