@@ -1,5 +1,6 @@
 <?php
 session_start();
+require "fonctions.php";
 
 // 1. Sécurité : Seul l'admin passe !
 requireAdmin();

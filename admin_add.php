@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         
         // On fait une requête spécifique ici pour inclure le rôle
-        $stmt = $pdo->prepare("INSERT INTO users (nom, email, password, adresse, role_id) VALUES (?, ?, ?, ?, ?)");
+        $stmt = $pdo->prepare("INSERT INTO users (nom, email, adresse, password, role_id) VALUES (?, ?, ?, ?, ?)");
         
         if ($stmt->execute([$nom, $email, $adresse, $passwordHash, $role_id])) {
             // Succès : on retourne à la liste des utilisateurs
