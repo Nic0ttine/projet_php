@@ -39,8 +39,7 @@ $users = $stmt->fetchAll();
 <a href="profil.php">Retour au profil</a> | <a href="logout.php">Se déconnecter</a>
 <br><br>
 
-<a href="register.php" target="_blank">Ajouter un utilisateur (via inscription)</a>
-<br><br>
+<a href="admin_add.php" class="btn-blue">Ajouter un nouvel utilisateur</a><br><br>
 
 <?php if ($message): ?>
     <p style="color: green; font-weight: bold;"><?php echo $message; ?></p>
