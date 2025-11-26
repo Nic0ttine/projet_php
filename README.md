@@ -1,4 +1,3 @@
-"# projet_php" 
 # Système de Gestion d'Utilisateurs (PHP Procédural)
 
 Ce projet est une application web complète de gestion d'utilisateurs développée en **PHP procédural** (sans Programmation Orientée Objet), conformément aux objectifs pédagogiques du module.
