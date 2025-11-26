@@ -125,3 +125,45 @@ a:hover {
     border-radius: 5px;
     margin-bottom: 15px;
 }
+
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    button, .btn-blue, .btn-red {
+        padding: 15px;
+        font-size: 16px;
+        display: block;
+        text-align: center;
+        margin-bottom: 5px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .btn-red {
+        width: auto;
+        display: inline-block;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    select {
+        font-size: 16px;
+    }
+}
