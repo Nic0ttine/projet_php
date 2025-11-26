@@ -6,7 +6,7 @@
 function getDB() {
     // Le PDF demande la base "gestion_users"
     $host = "localhost";
-    $dbname = "gestion_users";
+    $dbname = "userauth";
     $username = "root";
     $password = "";
 
@@ -43,7 +43,7 @@ function emailExiste($pdo, $email) {
 // Inscrire un utilisateur
 // ---------------------------------------
 function creerUtilisateur($pdo, $nom, $email, $adresse, $passwordHash) {
-    $sql = "INSERT INTO users (nom, email, adresse, password) VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO users (nom, email,password , adresse) VALUES (?, ?, ?, ?)";
     $stmt = $pdo->prepare($sql);
     return $stmt->execute([$nom, $email, $adresse, $passwordHash]);
 }

@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start(); // Obligatoire pour utiliser $_SESSION [cite: 25, 65]
 require "fonctions.php";
 
 $pdo = getDB();
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user = getUserByEmail($pdo, $email);
 
         // 2. Vérification du mot de passe
-        if ($user && password_verify($password, $user['passwors'])) {
+        if ($user && password_verify($password, $user['password'])) {
             // 3. ON STOCKE LES INFOS IMPORTANTES EN SESSION
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_nom'] = $user['nom'];
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($user['role_id'] == 1) {
                 header("Location: admin.php");
             } else {
-                header("Location; profil.php");
+                header("Location: profil.php");
             }
             exit;
         } else {

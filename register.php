@@ -3,6 +3,7 @@ session_start();
 require "fonctions.php";
 
 $pdo = getDB();
+$message = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -10,36 +11,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nom = trim($_POST['nom']);
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
-	$address = trim($_POST['address']);
+	$adresse = trim($_POST['adresse']);
     $confirm_password = $_POST['confirm_password'];
 
     // 2. Vérifications
-    if ($nom === "" || $email === "" || $password === "" || $adress === "") {
-        die("Tous les champs sont obligatoires.");
+    if ($nom === "" || $email === "" || $password === "" || $adresse === "") {
+        $message = "Tous les champs sont obligatoires.";
     }
 
     elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        die("Email invalide.");
+        $message = "Email invalide.";
     }
 
     // Regex pour le mail
     elseif (!preg_match("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/", $email)) {
-        die("Format d'email invalide.");
+        $message = "Format d'email invalide.";
     }
 
     // Regex pour le mot de passe (PDF: 8 chars, lettres + chiffres)
     elseif (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', $password)) {
-        die("Le mot de passe doit faire 8 caractères avec 1 lettre et 1 chiffre.");
+        $message = "Le mot de passe doit faire 8 caractères avec 1 lettre et 1 chiffre.";
     }
     elseif (emailExiste($pdo, $email)) {
-        die("Cet email existe déjà.");
+        $message = "Cet email existe déjà.";
     }
     else {
         // 3. Inscription
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
         // On appelle la fonction mise à jour avec l'adresse
-        if (creerUtilisateur($pdo, $nom, $email, $passwordHash, $address)) {
+        if (creerUtilisateur($pdo, $nom, $email, $passwordHash, $adresse)) {
         echo "Inscription réussie. <a href='login.php'>Se connecter</a>";
         } else {
         echo "Erreur lors de l'inscription.";
