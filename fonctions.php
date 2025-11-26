@@ -80,4 +80,20 @@ function requireLogin() {
     }
 }
 
+// ---------------------------------------
+// Bloquer si ce n'est pas un ADMIN
+// ---------------------------------------
+function requireAdmin() {
+    // 1. D'abord, on vérifie si la personne est connectée
+    requireLogin(); 
+    
+    // 2. Ensuite, on vérifie son rôle (1 = Admin selon la BDD)
+    if ($_SESSION['user_role'] != 1) {
+        // Si pas admin, on arrête tout ou on redirige
+        header("Location: profil.php");
+        exit;
+    }
+}
+
+
 ?>

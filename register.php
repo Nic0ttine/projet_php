@@ -79,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <input type="password" name="confirm_password" required><br><br>
     
     <button type="submit">S'inscrire</button>
+<p>Déjà un compte ? <a href="login.php">Se connecter</a></p>
 </form>
 </body>
 </html>
