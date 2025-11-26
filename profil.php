@@ -32,26 +32,28 @@ if (isset($_POST['supprimer_compte'])) {
     <title>Mon Profil</title>
 </head>
 <body>
-    <h2>Bienvenue sur votre espace, <?php echo htmlspecialchars($user['nom']); ?> !</h2>
-    <!--OBLIGATOIRE pour la sécurité (évite les failles XSS si quelqu'un a mis du script dans son nom).-->
+    <div class="container">
 
-    <h3>Vos informations :</h3>
-    <ul>
-        <li><strong>Email :</strong> <?php echo htmlspecialchars($user['email']); ?></li>
-        <li><strong>Adresse :</strong> <?php echo htmlspecialchars($user['adresse']); ?></li>
-        <li><strong>Rôle :</strong> <?php echo ($user['role_id'] == 1) ? 'Administrateur' : 'Utilisateur'; ?></li>
-    </ul>
+        <h2>Bienvenue sur votre espace, <?php echo htmlspecialchars($user['nom']); ?> !</h2>
+        <!--OBLIGATOIRE pour la sécurité (évite les failles XSS si quelqu'un a mis du script dans son nom).-->
 
-    <br>
-    <a href="logout.php">Se déconnecter</a>
+        <h3>Vos informations :</h3>
+        <ul>
+            <li><strong>Email :</strong> <?php echo htmlspecialchars($user['email']); ?></li>
+            <li><strong>Adresse :</strong> <?php echo htmlspecialchars($user['adresse']); ?></li>
+            <li><strong>Rôle :</strong> <?php echo ($user['role_id'] == 1) ? 'Administrateur' : 'Utilisateur'; ?></li>
+        </ul>
 
-    <hr>
+        <br>
+        <a href="logout.php">Se déconnecter</a>
+
+        <hr>
     
-    <h3>Zone de danger</h3>
-    <p>Vous pouvez supprimer définitivement votre compte.</p>
-    <form method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?');">
-        <button type="submit" name="supprimer_compte" style="color: red;">Supprimer mon compte</button>
-    </form>
-
+        <h3>Zone de danger</h3>
+        <p>Vous pouvez supprimer définitivement votre compte.</p>
+        <form method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?');">
+            <button type="submit" name="supprimer_compte" style="color: red;">Supprimer mon compte</button>
+        </form>
+    </div>
 </body>
 </html>

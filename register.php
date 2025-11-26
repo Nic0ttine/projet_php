@@ -56,30 +56,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Inscription</title>
 </head>
 <body>
-<h2>Inscription</h2>
+    <div class="container">
 
-<?php if ($message): ?>
-    <p style="color:red;"><?php echo $message; ?></p>
-<?php endif; ?>
+        <h2>Inscription</h2>
 
-<form method="POST">
-    <label>Nom :</label><br>
-    <input type="text" name="nom" required><br><br>
+        <?php if ($message): ?>
+            <p style="color:red;"><?php echo $message; ?></p>
+        <?php endif; ?>
+
+        <form method="POST">
+            <label>Nom :</label><br>
+            <input type="text" name="nom" required><br><br>
     
-    <label>Email :</label><br>
-    <input type="email" name="email" required><br><br>
+            <label>Email :</label><br>
+            <input type="email" name="email" required><br><br>
 	
-    <label>Adresse :</label><br>
-    <input type="text" name="adresse" required><br><br>
+            <label>Adresse :</label><br>
+            <input type="text" name="adresse" required><br><br>
     
-    <label>Mot de passe :</label><br>
-    <input type="password" name="password" required><br><br>
+            <label>Mot de passe :</label><br>
+            <input type="password" name="password" required><br><br>
 
-    <label>Confirmer le mot de passe :</label><br>
-    <input type="password" name="confirm_password" required><br><br>
+            <label>Confirmer le mot de passe :</label><br>
+            <input type="password" name="confirm_password" required><br><br>
     
-    <button type="submit">S'inscrire</button>
-<p>Déjà un compte ? <a href="login.php">Se connecter</a></p>
-</form>
+            <button type="submit">S'inscrire</button>
+        <p>Déjà un compte ? <a href="login.php">Se connecter</a></p>
+        </form>
+    </div>
 </body>
 </html>

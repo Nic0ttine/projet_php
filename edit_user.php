@@ -49,28 +49,30 @@ if (!$user) {
     <title>Modifier Utilisateur</title>
 </head>
 <body>
+    <div class="container">
 
-<h2>Modifier l'utilisateur : <?php echo htmlspecialchars($user['nom']); ?></h2>
+        <h2>Modifier l'utilisateur : <?php echo htmlspecialchars($user['nom']); ?></h2>
 
-<a href="admin.php">Retour à la liste</a>
-<br><br>
+        <a href="admin.php">Retour à la liste</a>
+        <br><br>
 
-<form method="POST">
-    <label>Nom :</label><br>
-    <input type="text" name="nom" value="<?php echo htmlspecialchars($user['nom']); ?>" required><br><br>
+        <form method="POST">
+            <label>Nom :</label><br>
+            <input type="text" name="nom" value="<?php echo htmlspecialchars($user['nom']); ?>" required><br><br>
 
-    <label>Email :</label><br>
-    <input type="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" required><br><br>
+            <label>Email :</label><br>
+            <input type="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" required><br><br>
 
-    <label>Rôle :</label><br>
-    <select name="role_id">
-        <option value="2" <?php if ($user['role_id'] == 2) echo 'selected'; ?>>Utilisateur</option>
-        <option value="1" <?php if ($user['role_id'] == 1) echo 'selected'; ?>>Administrateur</option>
-    </select>
-    <br><br>
+            <label>Rôle :</label><br>
+            <select name="role_id">
+                <option value="2" <?php if ($user['role_id'] == 2) echo 'selected'; ?>>Utilisateur</option>
+                <option value="1" <?php if ($user['role_id'] == 1) echo 'selected'; ?>>Administrateur</option>
+            </select>
+            <br><br>
 
-    <button type="submit">Enregistrer les modifications</button>
-</form>
+            <button type="submit">Enregistrer les modifications</button>
+        </form>
+    </div>
 
 </body>
 </html>

@@ -34,53 +34,56 @@ $users = $stmt->fetchAll();
     <title>Administration</title>
 </head>
 <body>
+    <div class="container">
 
-<h2>Interface Administrateur</h2>
-<p>Bienvenue <strong><?php echo htmlspecialchars($_SESSION['user_nom']); ?></strong>.</p>
-<a href="profil.php">Retour au profil</a> | <a href="logout.php">Se déconnecter</a>
-<br><br>
 
-<a href="admin_add.php" class="btn-blue">Ajouter un nouvel utilisateur</a><br><br>
+        <h2>Interface Administrateur</h2>
+        <p>Bienvenue <strong><?php echo htmlspecialchars($_SESSION['user_nom']); ?></strong>.</p>
+        <a href="profil.php">Retour au profil</a> | <a href="logout.php">Se déconnecter</a>
+        <br><br>
 
-<?php if ($message): ?>
-    <p style="color: green; font-weight: bold;"><?php echo $message; ?></p>
-<?php endif; ?>
+        <a href="admin_add.php" class="btn-blue">Ajouter un nouvel utilisateur</a><br><br>
 
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nom</th>
-            <th>Email</th>
-            <th>Adresse</th>
-            <th>Rôle</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($users as $u): ?>
-        <tr>
-            <td><?php echo $u['id']; ?></td>
-            <td><?php echo htmlspecialchars($u['nom']); ?></td>
-            <td><?php echo htmlspecialchars($u['email']); ?></td>
-            <td><?php echo htmlspecialchars($u['adresse']); ?></td>
-            <td>
-                <?php echo ($u['role_id'] == 1) ? '<strong>ADMIN</strong>' : 'Utilisateur'; ?>
-            </td>
-            <td>
-                <a href="edit_user.php?id=<?php echo $u['id']; ?>" class="btn-blue">Modifier</a>
-                
-                <?php if ($u['id'] != $_SESSION['user_id']): ?>
-                    <form method="POST" style="display:inline;" onsubmit="return confirm('Confirmer la suppression ?');">
-                        <input type="hidden" name="supprimer_id" value="<?php echo $u['id']; ?>">
-                        <button type="submit" class="btn-red">X</button>
-                    </form>
-                <?php endif; ?>
-            </td>
-        </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
+        <?php if ($message): ?>
+            <p style="color: green; font-weight: bold;"><?php echo $message; ?></p>
+        <?php endif; ?>
 
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Adresse</th>
+                    <th>Rôle</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($users as $u): ?>
+                <tr>
+                    <td><?php echo $u['id']; ?></td>
+                    <td><?php echo htmlspecialchars($u['nom']); ?></td>
+                    <td><?php echo htmlspecialchars($u['email']); ?></td>
+                    <td><?php echo htmlspecialchars($u['adresse']); ?></td>
+                    <td>
+                        <?php echo ($u['role_id'] == 1) ? '<strong>ADMIN</strong>' : 'Utilisateur'; ?>
+                    </td>
+                    <td>
+                        <a href="edit_user.php?id=<?php echo $u['id']; ?>" class="btn-blue">Modifier</a>
+                        
+                        <?php if ($u['id'] != $_SESSION['user_id']): ?>
+                            <form method="POST" style="display:inline;" onsubmit="return confirm('Confirmer la suppression ?');">
+                                <input type="hidden" name="supprimer_id" value="<?php echo $u['id']; ?>">
+                                <button type="submit" class="btn-red">X</button>
+                            </form>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+
+    </div>
 </body>
 </html>
