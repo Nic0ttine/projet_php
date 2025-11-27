@@ -73,8 +73,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label>Email :</label><br>
             <input type="email" name="email" required><br><br>
 	
-            <label>Adresse :</label><br>
-            <input type="text" name="adresse" required><br><br>
+            <div class="address-group">
+                <label>Adresse :</label>
+                <input type="text" name="adresse" id="addressInput" placeholder="Tapez une adresse..." autocomplete="off" required>
+                <ul id="suggestions"></ul>
+            </div>
+            <br>
     
             <label>Mot de passe :</label><br>
             <input type="password" name="password" required><br><br>
@@ -86,5 +90,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <p>Déjà un compte ? <a href="login.php">Se connecter</a></p>
         </form>
     </div>
+    <script>
+    const input = document.getElementById('addressInput');
+    const suggestions = document.getElementById('suggestions');
+
+    input.addEventListener('input', async () => {
+        const query = input.value.trim();
+
+        if (query.length < 3) {
+            suggestions.innerHTML = '';
+            return;
+        }
+
+        try {
+            const response = await fetch(`https://api-adresse.data.gouv.fr/search/?q=${encodeURIComponent(query)}&limit=5`);
+            const data = await response.json();
+
+            suggestions.innerHTML = '';
+            data.features.forEach(feature => {
+                const li = document.createElement('li');
+                li.textContent = feature.properties.label;
+                li.addEventListener('click', () => {
+                    input.value = feature.properties.label;
+                    suggestions.innerHTML = '';
+                });
+                suggestions.appendChild(li);
+            });
+        } catch (error) {
+            console.error('Erreur API BAN:', error);
+        }
+    });
+
+    // Petite astuce en plus : cacher la liste si on clique ailleurs
+    document.addEventListener('click', (e) => {
+        if (e.target !== input && e.target !== suggestions) {
+            suggestions.innerHTML = '';
+        }
+    });
+</script>
 </body>
 </html>
