@@ -78,7 +78,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" name="adresse" id="addressInput" placeholder="Tapez une adresse..." autocomplete="off" required>
                 <ul id="suggestions"></ul>
             </div>
-            <br>
     
             <label>Mot de passe :</label><br>
             <input type="password" name="password" required><br><br>
