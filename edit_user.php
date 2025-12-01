@@ -51,6 +51,7 @@ if (!$user) {
     <title>Modifier Utilisateur</title>
 </head>
 <body>
+    <?php include 'header.php'; ?>
     <div class="container">
 
         <h2>Modifier l'utilisateur : <?php echo htmlspecialchars($user['nom']); ?></h2>

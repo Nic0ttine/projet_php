@@ -53,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Ajouter un utilisateur</title>
 </head>
 <body>
+    <?php include 'header.php'; ?>
     <div class="container">
 
         <h2>Ajouter un nouvel utilisateur</h2>

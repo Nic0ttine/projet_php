@@ -36,6 +36,7 @@ $users = $stmt->fetchAll();
     <title>Administration</title>
 </head>
 <body>
+    <?php include 'header.php'; ?>
     <div class="container">
 
 

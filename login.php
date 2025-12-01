@@ -45,6 +45,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Connexion</title>
 </head>
 <body>
+    <?php include 'header.php'; ?>
+
+    <div class="container"><?php include 'header.php'; ?>
+
     <div class="container">
 
         <h2>Connexion</h2>

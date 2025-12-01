@@ -58,6 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Inscription</title>
 </head>
 <body>
+    <?php include 'header.php'; ?>
     <div class="container">
 
         <h2>Inscription</h2>

@@ -199,3 +199,128 @@ a:hover {
     background-color: #f0f2f5;
     color: #007bff;
 }
+
+/* --- 9. HEADER & NAVIGATION RESPONSIVE --- */
+
+/* Le bandeau blanc en haut */
+.main-header {
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: fixed; /* Reste collé en haut */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 60px; /* Hauteur fixe */
+}
+
+/* Contenu centré et espacé */
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo */
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007bff;
+    text-decoration: none;
+}
+
+/* Navigation (Version PC) */
+.nav-links {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-item:hover {
+    color: #007bff;
+}
+
+/* Boutons spéciaux dans le menu */
+.btn-logout {
+    color: #dc3545;
+}
+.btn-register {
+    background-color: #007bff;
+    color: white !important;
+    padding: 8px 15px;
+    border-radius: 4px;
+}
+.admin-link {
+    color: #e67e22; /* Orange pour l'admin */
+    font-weight: bold;
+}
+
+/* Burger (Caché sur PC) */
+.burger-menu {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.burger-menu span {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+/* --- RESPONSIVE (MOBILE) --- */
+@media (max-width: 768px) {
+    
+    /* On montre le burger */
+    .burger-menu {
+        display: flex;
+    }
+
+    /* On cache le menu par défaut et on le positionne en absolu */
+    .nav-links {
+        position: absolute;
+        top: 60px; /* Juste sous le header */
+        left: 0;
+        width: 100%;
+        background-color: white;
+        flex-direction: column; /* Vertical */
+        align-items: center;
+        padding: 20px 0;
+        box-shadow: 0 5px 5px rgba(0,0,0,0.1);
+        
+        /* Animation de glissement */
+        transform: translateY(-150%); 
+        transition: transform 0.3s ease-in-out;
+        z-index: 999;
+    }
+
+    /* Quand on clique (JS ajoute cette classe) */
+    .nav-links.active {
+        transform: translateY(0); /* Le menu descend */
+    }
+    
+    /* Espacement entre les liens sur mobile */
+    .nav-item {
+        margin: 15px 0;
+        font-size: 18px;
+    }
+}
+
+/* Ajustement du container principal pour ne pas être caché par le header */
+.container {
+    margin-top: 100px !important; /* On pousse le contenu vers le bas car le header est "fixed" */
+}

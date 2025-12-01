@@ -34,6 +34,7 @@ if (isset($_POST['supprimer_compte'])) {
     <title>Mon Profil</title>
 </head>
 <body>
+    <?php include 'header.php'; ?>
     <div class="container">
 
         <h2>Bienvenue sur votre espace, <?php echo htmlspecialchars($user['nom']); ?> !</h2>
